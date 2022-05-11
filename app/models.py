@@ -40,12 +40,14 @@ class Faq(models.Model):
     Ans = models.TextField()
     def __str__(self):
         return self.Ques
+
+
 #Enquiry
 class Enquiry(models.Model):
-    fullname=models.CharField(max_length=200)
+    full_Name=models.CharField(max_length=200)
     email = models.EmailField()
     message =models.TextField()
     send_time=models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return self.fullname
+        return self.full_Name

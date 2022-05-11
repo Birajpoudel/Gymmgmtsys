@@ -4,4 +4,4 @@ from . import models
 class EnquiryForm(forms.ModelForm):
 	class Meta:
 		model=models.Enquiry
-		fields=('fullname','email','message')
+		fields=('full_Name','email','message')

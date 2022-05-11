@@ -9,6 +9,9 @@ def HOME(request):
     services = models.Service.objects.all()[:3]
 
     return render (request, 'home.html',{'banners':banners,'services':services})
+def page_detail(request,id):
+    page=models.Page.objects.get(id=id)
+    return render(request,'page.html',{'page':page})
 
 #FAQ
 def FAQ(request):

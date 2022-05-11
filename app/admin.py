@@ -22,5 +22,5 @@ class FaqAdmin(admin.ModelAdmin):
 admin.site.register(models.Faq, FaqAdmin)
 
 class EnquiryAdmin(admin.ModelAdmin):
-    list_display = ('fullname','email','message','send_time')
+    list_display = ('full_Name','email','message','send_time')
 admin.site.register(models.Enquiry,EnquiryAdmin)
