@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -136,3 +137,17 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+JAZZMIN_UI_TWEAKS = {
+
+    "theme": "simplex",
+}
+
+JAZZMIN_SETTINGS= {
+    "site_title": "GMS Admin",
+    "site_header": "GMS Admin",
+    "order_with_respect_to": ["auth"],
+    "welcome_sign": "Welcome to the Arnold's GYM",
+    "copyright": "Arnold's Gym Ltd",
+
+}
