@@ -26,6 +26,8 @@ urlpatterns = [
     path('faq', views.FAQ, name='faq'),
     path('enquiry', views.ENQUIRY, name='enquiry'),
     path('pagedetail/<int:id>', views.page_detail, name='pagedetail'),
+    path('gallery', views.gallery, name='gallery'),
+    path('gallery_detail/<int:id>', views.gallery_detail, name='gallery_detail'),
 
 
 
