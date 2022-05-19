@@ -2,6 +2,8 @@ from django.shortcuts import  render
 from app import models
 from app import forms
 
+def BASE(request):
+    return render (request, 'base.html')
 
 #Home page
 def HOME(request):
@@ -38,8 +40,14 @@ def gallery_detail(request,id):
     gallery_imgs = models.GalleryImage.objects.filter(gallery=gallery).order_by('-id')
     return render (request, 'gallery_imgs.html',{'gallery_imgs':gallery_imgs,'gallery':gallery})
 
-def BASE(request):
-    return render (request, 'base.html')
+#Subscription Plans
 def PRICING(request):
-    return render (request, 'pricing.html')
+    pricing=models.SubPlan.objects.all().order_by('price')
+    dfeatures = models.SubPlanFeature.objects.distinct('title')
+
+    return render (request,'pricing.html',{'plans':pricing,'dfeatures':dfeatures})
+
+
+
+
 

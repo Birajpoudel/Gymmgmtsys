@@ -77,3 +77,20 @@ class GalleryImage(models.Model):
     def image_tag(self):
         return mark_safe('<img src= "%s"  width="80" />' % (self.img.url))
 
+#Subcription Plans
+class SubPlan(models.Model):
+    title = models.CharField(max_length=200)
+    price = models.IntegerField()
+    highlights_status =models.BooleanField(default=False,null=True)
+    def __str__(self):
+        return self.title
+
+#Subcription Plans Features
+class SubPlanFeature(models.Model):
+
+   #subplan=models.ForeignKey(SubPlan,on_delete=models.CASCADE,null=True)
+   subplan = models.ManyToManyField(SubPlan)
+   title = models.CharField(max_length=50)
+
+   def __str__(self):
+       return self.title

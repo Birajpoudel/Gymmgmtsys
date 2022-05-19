@@ -146,8 +146,10 @@ JAZZMIN_UI_TWEAKS = {
 JAZZMIN_SETTINGS= {
     "site_title": "GMS Admin",
     "site_header": "GMS Admin",
-    "order_with_respect_to": ["auth"],
+    "index_title":"BIRAJ POUDEL",
+    "order_with_respect_to" : ["auth"],
     "welcome_sign": "Welcome to the Arnold's GYM",
     "copyright": "Arnold's Gym Ltd",
+    "site_logo": "imgs/logo.png",
 
 }
