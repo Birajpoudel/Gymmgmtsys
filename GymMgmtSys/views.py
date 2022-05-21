@@ -1,4 +1,4 @@
-from django.shortcuts import  render
+from django.shortcuts import  render,redirect
 from app import models
 from app import forms
 
@@ -47,7 +47,24 @@ def PRICING(request):
 
     return render (request,'pricing.html',{'plans':pricing,'dfeatures':dfeatures})
 
+from app.Emailbackend  import EmailBackEnd
+from django.contrib import messages
+from django.contrib.auth import authenticate,login,logout
+def DO_LOGIN(request):
+    if request.method == "POST":
 
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
+        user = authenticate(request, username=username, password=password)
+        if user != None:
+            login(request, user)
+            return redirect('home')
+        else:
+            messages.error(request, 'Email and Password Are Invalid !')
+            return redirect('login')
 
+    return render(request,'registration/login.html')
+def Error404(request):
+    return render(request,'404.html')
 

@@ -17,6 +17,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from .import views
+from django.urls import path,include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,6 +29,12 @@ urlpatterns = [
     path('pagedetail/<int:id>', views.page_detail, name='pagedetail'),
     path('gallery', views.gallery, name='gallery'),
     path('gallery_detail/<int:id>', views.gallery_detail, name='gallery_detail'),
+    path('accounts/', include('django.contrib.auth.urls')),
+
+    path('login',views.DO_LOGIN,name='login'),
+    path('404',views.Error404,name='404')
+
+
 
 
 
