@@ -7,31 +7,27 @@
     <main>
 		<!-- Services -->
 		<section class="container my-4">
-			<h1 class="text-center mb-4 section-heading border-bottom pb-2">Login</h1>
+			<h1 class="text-center mb-4 section-heading border-bottom pb-2">Register</h1>
 			<div class="row">
 				<div class="col-md-6 offset-3">
 					{% if msg %}
 					<p class="text-sucess">{{msg}}</p>
 					{% endif %}
 
-					<form method="POST" action=" {% url 'login' %}">
-						{% csrf_token %}
+					<form method="post" action=" ">
+					{% csrf_token %}
 						<table class="table table-bordered">
-							<tr>
-								<th>Username <span class="text-danger">*</span></th>
-								<td><input type="text" class="form-control" placeholder="username" name="username"/></td>
-							</tr>
-							<tr>
-								<th>Password <span class="text-danger">*</span></th>
-								<td><input type="password" class="form-control" placeholder="password" name="password"  /></td>
-							</tr>
+
+							{{form.as_table}}
+
 							<tr>
 								<td colspan="2">
-									<input type="submit" value ="LOGIN" class="btn btn-primary" />
+									<input type="submit" value ="SIGN UP" class="btn btn-primary" />
 								</td>
 							</tr>
 						</table>
 					</form>
+					<p>If you are already registered, then please <a href="{% url 'login' %}">Login</a></p>
 				</div>
 			</div>
 		</section>
