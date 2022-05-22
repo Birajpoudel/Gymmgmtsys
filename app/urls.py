@@ -32,14 +32,7 @@ urlpatterns = [
 
     path('login', views.DO_LOGIN, name='login'),
     path('404', views.Error404, name='404'),
-    path('accounts/signup',views.signup,name='signup' ),
-
-
-
-
-
-
-
+    path('accounts/signup',views.signup,name='signup' )
 
 ]
 if settings.DEBUG:

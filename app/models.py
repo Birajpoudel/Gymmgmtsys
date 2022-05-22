@@ -81,6 +81,7 @@ class GalleryImage(models.Model):
 class SubPlan(models.Model):
     title = models.CharField(max_length=200)
     price = models.IntegerField()
+    max_member=models.IntegerField(null=True)
     highlights_status =models.BooleanField(default=False,null=True)
     def __str__(self):
         return self.title

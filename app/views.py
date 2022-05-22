@@ -8,7 +8,7 @@ def BASE(request):
 #Home page
 def HOME(request):
     banners = models.Banners.objects.all()
-    services = models.Service.objects.all()[:3]
+    services = models.Service.objects.all()[:4]
 
     return render (request, 'home.html',{'banners':banners,'services':services})
 def page_detail(request,id):
@@ -44,6 +44,7 @@ def gallery_detail(request,id):
 def PRICING(request):
     pricing=models.SubPlan.objects.all().order_by('price')
     dfeatures = models.SubPlanFeature.objects.distinct('title')
+
 
     return render (request,'pricing.html',{'plans':pricing,'dfeatures':dfeatures})
 
