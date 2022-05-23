@@ -46,3 +46,9 @@ class SubPlanFeatureAdmin(admin.ModelAdmin):
         return " | ".join([sub.title for sub in obj.subplan.all()])
 admin.site.register(models.SubPlanFeature, SubPlanFeatureAdmin)
 
+class PlanDiscountAdmin(admin.ModelAdmin):
+    list_display = ('total_months','total_discount','subplans')
+    def subplans(self, obj):
+        return " | ".join([sub.title for sub in obj.subplan.all()])
+
+admin.site.register(models.PlanDiscount,PlanDiscountAdmin)

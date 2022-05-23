@@ -81,4 +81,9 @@ def signup(request):
     form=forms.SignUp
     return render(request, 'registration/signup.html',{'form':form,'msg':msg})
 
+#Checkout
+def CHECKOUT(request,plan_id):
+    planDetail=models.SubPlan.objects.get(pk=plan_id)
 
+
+    return render (request,'checkout.html',{'plan':planDetail})
