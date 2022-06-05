@@ -52,3 +52,12 @@ class PlanDiscountAdmin(admin.ModelAdmin):
         return " | ".join([sub.title for sub in obj.subplan.all()])
 
 admin.site.register(models.PlanDiscount,PlanDiscountAdmin)
+
+
+class subscriberAdmin(admin.ModelAdmin):
+    list_display = ('user','image_tag','phone_number','address')
+admin.site.register(models.subscriber,subscriberAdmin)
+
+class subscriptionAdmin(admin.ModelAdmin):
+    list_display = ('user','plan','price')
+admin.site.register(models.subcription,subscriptionAdmin)

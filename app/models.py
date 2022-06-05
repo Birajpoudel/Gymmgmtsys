@@ -2,7 +2,7 @@
 # Create your models here.
 from django.db import models
 from django.utils.html import mark_safe
-
+from django.contrib.auth.models import User
 
 #Banners
 class Banners(models.Model):
@@ -104,3 +104,23 @@ class PlanDiscount(models.Model):
 
     def __str__(self):
         return str(self.total_months)
+
+#Subscriber
+class subscriber(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    phone_number=models.CharField(max_length=15)
+    address=models.CharField(max_length=100)
+    img=models.ImageField(upload_to="subs/")
+
+    def __str__(self):
+        return self.subs
+
+    def image_tag(self):
+        return mark_safe('<img src= "%s"  width="80" />' % (self.img.url))
+#Subcription
+class subcription(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE,null=True)
+    plan = models.ForeignKey(SubPlan, on_delete=models.CASCADE, null=True)
+    price=models.IntegerField()
+
+

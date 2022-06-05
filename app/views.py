@@ -1,6 +1,7 @@
 from django.shortcuts import  render,redirect
 from app import models
 from app import forms
+import stripe
 
 def BASE(request):
     return render (request, 'base.html')
@@ -8,12 +9,13 @@ def BASE(request):
 #Home page
 def HOME(request):
     banners = models.Banners.objects.all()
-    services = models.Service.objects.all()[:4]
+    services = models.Service.objects.all()[:3]
 
     return render (request, 'home.html',{'banners':banners,'services':services})
 def page_detail(request,id):
     page=models.Page.objects.get(id=id)
     return render(request,'page.html',{'page':page})
+
 
 #FAQ
 def FAQ(request):
@@ -87,3 +89,33 @@ def CHECKOUT(request,plan_id):
 
 
     return render (request,'checkout.html',{'plan':planDetail})
+
+
+stripe.api_key = 'sk_test_51L4F8ESJsiI7mY7S0wqIIk1jTSNHqsryBiioQg7RSBwTpWnoJQXBRTgjQoRunJ32u8ACnt5OFg0GjUI5gxz8NbIo00SEhxCdj8'
+
+
+def checkout_session(request,plan_id):
+	plan=models.SubPlan.objects.get(pk=plan_id)
+	session=stripe.checkout.Session.create(
+		payment_method_types=['card'],
+		line_items=[{
+	      'price_data': {
+	        'currency': 'inr',
+	        'product_data': {
+	          'name': plan.title,
+	        },
+	        'unit_amount': plan.price*100,
+	      },
+	      'quantity': 1,
+	    }],
+	    mode='payment',
+
+	    success_url='http://127.0.0.1:8000/pay_success?session_id={CHECKOUT_SESSION_ID}',
+	    cancel_url='http://127.0.0.1:8000/pay_cancel',
+	    client_reference_id=plan_id
+	)
+	return redirect(request,session.url, {plan:plan})
+def pay_success (request):
+    return render(request,'success.html')
+def pay_cancel(request):
+    return render(request,'cancel.html')
